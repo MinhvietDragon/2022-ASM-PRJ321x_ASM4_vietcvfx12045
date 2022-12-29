@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd ">
+
+   <!-- Tạo DataSource (import mssql jdbc vào dự án) -->
+	<bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+	   <property name = "driverClassName" value = "com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	   <property name = "url" value = "jdbc:sqlserver://DESKTOP-OBKN98T:1433;databaseName=ShoppingDB;encrypt=false;"/>
+	   <property name = "username" value = "sa"/>
+	   <property name = "password" value = "123456"/>
+	</bean>
+
+   <!-- Tạo bean AccountUserJDBCTemplate với dataSource vừa tạo phía trên  -->
+   <bean id = "AccountUserJDBCTemplate" class = "controller.AccountUserJDBCTemplate">
+      <property name="dataSource" ref = "dataSource" />    
+   </bean>
+      
+</beans>
